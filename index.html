@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Garima 💍 Alkesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle, #ff1f4b, #8b0033);
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding-top: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 60px;
+    animation: glow 2s infinite alternate;
+}
+
+#typing {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Photo Circle */
+.photo-box {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 6px solid white;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Buttons */
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#yesBtn {
+    background: white;
+    color: #ff0033;
+}
+
+#noBtn {
+    background: black;
+    color: white;
+}
+
+/* Falling Hearts */
+.fall {
+    position: absolute;
+    font-size: 28px;
+    animation: fall linear infinite;
+}
+
+/* Ring Animation */
+#ring {
+    font-size: 120px;
+    display: none;
+    animation: zoom 2s infinite;
+}
+
+/* Final Proposal Screen */
+#finalScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    height: 100%;
+    color: pink;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    padding-top: 20%;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 40px pink; }
+}
+
+@keyframes zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic Music -->
+<audio autoplay loop>
+  <source src="love.mp3" type="audio/mp3">
+</audio>
+
+<div class="container" id="main">
+
+<h1>Garima ❤️</h1>
+<div id="typing"></div>
+
+<div class="photo-box">
+    <img id="slide" src="photo1.jpg">
+</div>
+
+<h2>Alkesh has a special question for you…</h2>
+<h2>Will you be mine forever? 💍</h2>
+
+<button id="yesBtn">YES 😍</button>
+<button id="noBtn">NO 😜</button>
+
+<div id="ring">💍</div>
+
+</div>
+
+<!-- Final Screen -->
+<div id="finalScreen">
+💖 SHE SAID YES 💖 <br><br>
+Garima + Alkesh = FOREVER ❤️<br><br>
+I Love You 💕
+</div>
+
+<script>
+// Typing Effect
+let text = "Garima, from the first day I saw you, my heart chose you forever 💫";
+let i = 0;
+function type() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 70);
+    }
+}
+type();
+
+// Photo Slideshow
+let photos = ["photo1.jpg", "photo2.jpg"];
+let index = 0;
+setInterval(() => {
+    index = (index + 1) % photos.length;
+    document.getElementById("slide").src = photos[index];
+}, 3000);
+
+// Falling Hearts
+setInterval(() => {
+    let h = document.createElement("div");
+    h.classList.add("fall");
+    h.innerHTML = Math.random() > 0.5 ? "❤️" : "🌹";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+}, 200);
+
+// YES Button
+document.getElementById("yesBtn").onclick = function() {
+    document.getElementById("ring").style.display = "block";
+    setTimeout(() => {
+        document.getElementById("main").style.display = "none";
+        document.getElementById("finalScreen").style.display = "block";
+    }, 3000);
+};
+
+// NO Button Prank
+document.getElementById("noBtn").onmouseover = function() {
+    this.style.position = "absolute";
+    this.style.left = Math.random() * window.innerWidth + "px";
+    this.style.top = Math.random() * window.innerHeight + "px";
+};
+</script>
+
+</body>
+</html>
